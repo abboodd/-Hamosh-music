@@ -439,6 +439,27 @@ client.on("message", message => {
    }); 
  
 
+client.on("ready", () => {
+client.user.setPresence({
+  status: 'online', //الحال
+  game: {
+     type: 0,
+     name: 'Pirates.🔥|Hhelp',    
+     details: `🎈r-help🎈`,  
+     url: 'http://twitch.tv/Streammingg',
+     state: `.`,
+    application_id: '431836563379322880',
+     assets: {
+        small_image: `448884736903872515`, 
+        small_text: 'rv clan' ,
+        large_image: `448885134960361473`, 
+        large_text: `r-help` } 
+ 
+  }
+    });
+});
+
+
 
 
 client.login(process.env.BOT_TOKEN);
