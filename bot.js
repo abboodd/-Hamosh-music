@@ -70,19 +70,19 @@ client.on('message', async msg => { // eslint-disable-line
     
 		const voiceChannel = msg.member.voiceChannel;
         
-		if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+		if (!voiceChannel) return msg.channel.send('المفروض تكون فروم يا حلو');
 
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
 
 		if (!permissions.has('CONNECT')) {
 
-			return msg.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
+			return msg.channel.send('ما بقدر ادخل هذا الروم ادخل روم ثاني');
 
 		}
 
 		if (!permissions.has('SPEAK')) {
 
-			return msg.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
+			return msg.channel.send('ما بقدر اسمعك اشي لانو ماعندي الصلاحيات');
 
 		}
 
@@ -102,7 +102,7 @@ client.on('message', async msg => { // eslint-disable-line
 
 			}
 
-			return msg.channel.send(`✅ Playlist: **${playlist.title}** has been added to the queue!`);
+			return msg.channel.send(`✅ Playlist: **${playlist.title}** تمت الاضافة الى قائمة الانتضار`);
 
 		} else {
 
@@ -156,7 +156,7 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
 					console.error(err);
 
-					return msg.channel.send('🆘 I could not obtain any search results.');
+					return msg.channel.send('🆘 لم يتم العثور على اي نتيجة بحث');
 
 				}
 
@@ -172,7 +172,7 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
 
-		serverQueue.connection.dispatcher.end('Skip command has been used!');
+		serverQueue.connection.dispatcher.end('تم استخدم امر التخطي');
 
 		return undefined;
 
@@ -184,7 +184,7 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
 		serverQueue.songs = [];
 
-		serverQueue.connection.dispatcher.end('Stop command has been used!');
+		serverQueue.connection.dispatcher.end('تم استخدام امر التوقف بالفعل');
 
 		return undefined;
 
@@ -204,7 +204,7 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
 	} else if (command === `np`) {
 
-		if (!serverQueue) return msg.channel.send('There is nothing playing.');
+		if (!serverQueue) return msg.channel.send('لا يوجد شئ لتشغيله');
 
 		return msg.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
 
@@ -234,7 +234,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 
 			serverQueue.connection.dispatcher.pause();
 
-			return msg.channel.send('⏸ Paused the music for you!');
+			return msg.channel.send('⏸ تم توقيف الموسيقى مؤقتا!');
 
 		}
 
@@ -248,11 +248,11 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 
 			serverQueue.connection.dispatcher.resume();
 
-			return msg.channel.send('▶ Resumed the music for you!');
+			return msg.channel.send('▶ تم استأناف الاغنبة');
 
 		}
 
-		return msg.channel.send('There is nothing playing.');
+		return msg.channel.send('لا يوجد شئ قيد التشغيل.');
 
 	}
 
@@ -319,7 +319,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 
 			queue.delete(msg.guild.id);
 
-			return msg.channel.send(`I could not join the voice channel: ${error}`);
+			return msg.channel.send(`لم استطيع دخول الروم الصوتي: ${error}`);
 
 		}
 
@@ -331,7 +331,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 
 		if (playlist) return undefined;
 
-		else return msg.channel.send(`✅ **${song.title}** has been added to the queue!`);
+		else return msg.channel.send(`✅ **${song.title}** تمت اضافتها الى قائمة الانتضار`);
 
 	}
 
